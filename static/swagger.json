@@ -1,0 +1,253 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Swagger for Room Iot",
+    "version": "1.0.0",
+    "title": "Room IOT",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "Products API",
+      "description": "Test API"
+    }
+  ],
+   "servers": [
+        {
+        "url": "/"
+        
+        }
+    ],
+       "components": {
+        "schemas": {
+            "Room": {
+                "type": "object",
+                "properties": {
+                    "projector_availabilty": {
+                        "type": "boolean"   
+                    },
+                    "room_number": {
+                        "type": "string" 
+                    },
+                    "computer_availability": {
+                        "type": "boolean"  
+                    },
+                    "no_seat": {
+                        "type": "integer"
+                    },
+                    "wheelchair_friendly": {
+                        "type": "boolean"
+                    },
+                    "room_accebility": {
+                        "type": "boolean"
+                    },
+                    "airconditioning_availability": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Id":{
+            "type" : "string",
+            "properties" : {
+                "name" : {
+                    "type" : "string"
+                }
+            }
+            },
+              
+            "update":{
+              "type": "object",
+              "properties" :{
+                "projector_availabilty": {
+                    "type": "boolean"   
+                },
+                "room_number": {
+                    "type": "string"
+                },
+                "computer_availability": {
+                    "type": "boolean"  
+                },
+                "no_seat": {
+                    "type": "int"
+                },
+                "wheelchair_friendly": {
+                    "type": "boolean"
+                },
+                "room_accebility": {
+                    "type": "boolean"
+                },
+                "airconditioning_availability": {
+                    "type": "boolean"
+                }
+              }
+            }
+        }
+    },
+     "paths": {
+        "/room": {
+            "post": {
+            "tags": [
+                "Add Room to API"
+            ],
+            "summary": "Add Room",
+            "requestBody": {
+            "description": "Post New Room To Database",
+            "required": true,
+            "content": {
+                "application/json": {
+                "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+                }
+            }
+            },
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+            }
+            }
+            },
+            "get" :{
+                "tags": [
+                    "Get All List of Rooms from API"
+                ],
+                "summary": "Get All Rooms",
+               
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+                }
+            }
+            }
+            
+        },
+        "/room/{id}":{
+
+            "get" :{
+                "tags": [
+                    "Get room from API"
+                ],
+                "summary": "Get room",
+                "parameters": [{
+                  "name": "id",
+                  "in": "path",
+                  "description": "room id to update",
+                  "required": true,
+                  "type": "integer",
+                  "schema" : {
+                      "$ref": "#/components/schemas/Id"
+                  }
+                }],
+               
+                "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+            }
+            }
+            },
+           
+            "put": {
+            "tags": [
+                "Update rooms on API"
+            ],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "room id to update",
+                "required": true,
+                "type": "integer",
+                "schema" : {
+                    "$ref": "#/components/schemas/Id"
+                }
+            }],
+            "summary": "Update Room",
+            "requestBody": {
+            "description": "Update Existing room On Database",
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "#/components/schemas/update"
+                    }
+                }
+            }
+            },
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+            }
+            }
+        },
+        "delete": {
+            "tags": [
+                "Delete room to API"
+            ],
+            "parameters": [{
+                "name": "id",
+                "in": "path",
+                "description": "product id to delete",
+                "required": true,
+                "type": "integer",
+                "schema" : {
+                    "$ref": "#/components/schemas/Id"
+                }
+            }],
+            "summary": "Delete room",
+            
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/Room"
+                    }
+            }
+            }
+        }
+        }
+}
+}
