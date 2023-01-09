@@ -15,4 +15,4 @@ if __name__ == "__main__":
   
    # Get the database
    dbname = get_database()
-   print(dbname.get_collection)
+  
